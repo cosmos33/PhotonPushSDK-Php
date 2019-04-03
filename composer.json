@@ -1,0 +1,11 @@
+{
+  "name": "Photon/PushSDK",
+  "description": "photon push open api",
+  "license": "MIT",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Photon\\": "src/"
+    }
+  }
+}
