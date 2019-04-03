@@ -1,8 +1,8 @@
 # PhotonPushSDK-Php
 光子推送服务端phpsdk
-```
-composer.json
 
+### composer.json
+```
 {
   "require": {
     "Photon/PushSDK": "*"
@@ -18,10 +18,8 @@ composer.json
 ```
 
 
-
+### demo.php
 ```
-demo.php
-
 <?php
 
 include "vendor/autoload.php";
@@ -62,5 +60,5 @@ echo $iPush->notification
 ```
 
 
-| 如遇token限制，请在 https://github.com/settings/tokens/new 页面自行创建token解决
+> 如遇token限制，请在 https://github.com/settings/tokens/new 页面自行创建token解决
 
