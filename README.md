@@ -1,7 +1,27 @@
 # PhotonPushSDK-Php
 光子推送服务端phpsdk
+```
+composer.json
+
+{
+  "require": {
+    "Photon/PushSDK": "*"
+  },
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "repositories": [
+    {"type": "vcs", "url": "https://github.com/cosmos33/PhotonPushSDK-Php.git"},
+    {"packagist": false}
+  ]
+}
+```
+
+
 
 ```
+demo.php
+
 <?php
 
 include "vendor/autoload.php";
@@ -42,5 +62,5 @@ echo $iPush->notification
 ```
 
 
-
+| 如遇token限制，请在 https://github.com/settings/tokens/new 页面自行创建token解决
 
