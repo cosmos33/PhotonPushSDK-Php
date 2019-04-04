@@ -2,6 +2,12 @@
 
 namespace Photon;
 
+//通知栏消息
+define("NotificationUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9nYXRld2F5L25vdGlmaWNhdGlvbg=="));
+
+//透传消息
+define("PenetrateUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9nYXRld2F5L3BlbmV0cmF0ZQ=="));
+
 //参数校验
 define("VolatileManager", array(
 

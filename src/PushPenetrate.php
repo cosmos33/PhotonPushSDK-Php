@@ -26,8 +26,8 @@ class PushPenetrate {
         return $this;
     }
 
-    public function setAppKey($appid) {
-        $this->lib->setParams("appId", strval($appid));
+    public function setAppKey($appkey) {
+        $this->lib->setParams("appKey", strval($appkey));
         return $this;
     }
 
