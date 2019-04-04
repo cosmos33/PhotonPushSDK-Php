@@ -49,8 +49,8 @@ define("VolatileManager", array(
         "pushType" => array("string", true, array("ALIAS", "TOKEN")),
         "packageName" => array("string", true),
         "message" => array("string", true),
-        "vendorPushSwitch" => array("int", false, array(0, 1), 0),
         "source" => array("string", true),
+        "vendorPushSwitch" => array("int", false, array(0, 1), 0),
         "offLine" => array("int", false, array(0, 1), 0),
         "offLineTtl" => array("int", false),
     )
@@ -80,9 +80,8 @@ class Lib {
             $postArray = $this->_params;
             $this->_params = array();
             $this->_temps = array();
-
-            var_dump($postArray, $this->_params, $this->_temps);
             $con = curl_init($url);
+
             curl_setopt($con, CURLOPT_HEADER, false);
             curl_setopt($con, CURLOPT_POSTFIELDS, http_build_query($postArray));
             curl_setopt($con, CURLOPT_POST,true);
@@ -127,6 +126,8 @@ class Lib {
     private function encrpty() {
         $timestamp = time();
         $this->_params['sign'] = md5($this->_params['appId'] . $this->_temps['appKey'] . $timestamp);
+
+        var_dump($this->_params['appId'] . $this->_temps['appKey'] . $timestamp);
         $this->_params['timestamp'] = $timestamp;
     }
 

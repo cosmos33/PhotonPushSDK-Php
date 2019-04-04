@@ -10,15 +10,13 @@ namespace Photon;
 
 class PushPenetrate {
 
-    private $lib = null;
+    public $lib = null;
+
+    public $useSuper = null;
 
     public function __construct() {
+        $this->useSuper = new PushPenetrateSuper($this);
         $this->lib = new Lib($this);
-    }
-
-    public function setSign($sign) {
-        $this->lib->setParams("sign", strval($sign));
-        return $this;
     }
 
     public function setAppid($appid) {
@@ -27,7 +25,7 @@ class PushPenetrate {
     }
 
     public function setAppKey($appkey) {
-        $this->lib->setParams("appKey", strval($appkey));
+        $this->lib->setParams("appKey", strval($appkey), true);
         return $this;
     }
 
@@ -51,25 +49,11 @@ class PushPenetrate {
         return $this;
     }
 
-    public function setVendorPushSwitch($switch) {
-        $this->lib->setParams("vendorPushSwitch", strval($switch));
-        return $this;
-    }
-
     public function setSource($source) {
         $this->lib->setParams("source", strval($source));
         return $this;
     }
 
-    public function setOffLine($offLine) {
-        $this->lib->setParams("offLine", intval($offLine));
-        return $this;
-    }
-
-    public function setOffLineTtl($offLineTtl) {
-        $this->lib->setParams("offLineTtl", intval($offLineTtl));
-        return $this;
-    }
 
     public function push($timeout = 1) {
         return $this->lib->httpPost("penetrate", $timeout);
@@ -78,3 +62,44 @@ class PushPenetrate {
 
 }
 
+
+class PushPenetrateSuper {
+
+    /**
+     * @var PushNotification
+     */
+    private $iPushPenetrate = null;
+
+    public function __construct($inst) {
+        $this->iPushPenetrate = $inst;
+    }
+
+    /**
+     * @param int $on                   是否通过厂商发送push，是:1 否2
+     */
+    public function setVendorPushSwitch($switch) {
+        $this->iPushPenetrate->lib->setParams("vendorPushSwitch", intval($switch));
+        return $this;
+    }
+
+
+    /**
+     * @param int $switch               是否进入厂商离线队列
+     */
+    public function setOffLine($switch) {
+        $this->iPushPenetrate->lib->setParams("offLine", intval($switch));
+        return $this;
+    }
+
+    /**
+     * @param int $ttl                  离线队列存在时间，单位s
+     */
+    public function setOffLineTtl($ttl) {
+        $this->iPushPenetrate->lib->setParams("offLineTtl", intval($ttl));
+        return $this;
+    }
+
+    public function push($timeout = 1) {
+        return $this->iPushPenetrate->push($timeout);
+    }
+}
