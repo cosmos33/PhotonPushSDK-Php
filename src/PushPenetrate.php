@@ -75,7 +75,7 @@ class PushPenetrateSuper {
     }
 
     /**
-     * @param int $on                   是否通过厂商发送push，是:1 否2
+     * @param int $on                   是否通过厂商发送push，是:1 否0
      */
     public function setVendorPushSwitch($switch) {
         $this->iPushPenetrate->lib->setParams("vendorPushSwitch", intval($switch));

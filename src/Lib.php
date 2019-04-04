@@ -126,8 +126,6 @@ class Lib {
     private function encrpty() {
         $timestamp = time();
         $this->_params['sign'] = md5($this->_params['appId'] . $this->_temps['appKey'] . $timestamp);
-
-        var_dump($this->_params['appId'] . $this->_temps['appKey'] . $timestamp);
         $this->_params['timestamp'] = $timestamp;
     }
 
