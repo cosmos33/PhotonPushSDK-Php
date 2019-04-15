@@ -61,6 +61,7 @@ echo $iPush->notification
 
 
 //一般通知栏消息批量发送
+```
 echo $iPush->notificationBatch
     ->setAppid("xxx")
     ->setAppKey("xxxx")
