@@ -18,7 +18,7 @@ class PushCore {
     public $useSuper = null;
 
     /**
-     * @var \Photon\Push\Notification | \Photon\Push\Penetrate
+     * @var \Photon\Push\Notification | \Photon\Push\NotificationBatch | \Photon\Push\Penetrate | \Photon\Push\PenetrateBatch
      */
     public $subInstance = null;
 
