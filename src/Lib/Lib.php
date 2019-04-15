@@ -1,6 +1,6 @@
 <?php
 
-namespace Photon;
+namespace Photon\Lib;
 
 
 //通知栏消息
