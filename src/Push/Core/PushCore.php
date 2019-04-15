@@ -20,7 +20,7 @@ class PushCore {
 
     public function __construct($instance) {
         $this->useSuper = $instance;
-        $this->lib = new \Photon\Lib($this);
+        $this->lib = new \Photon\Lib\Lib($this);
     }
 
     public function setAppid($appid) {
