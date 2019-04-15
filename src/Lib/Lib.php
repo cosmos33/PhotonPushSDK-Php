@@ -17,9 +17,7 @@ class Lib {
     private $_params = array();
 
     private $_temps = array();
-
-    private $parent = null;
-
+    
     private $volatile = array(
 
         "notification" => array(
@@ -67,8 +65,7 @@ class Lib {
 
     );
 
-    public function __construct($inst) {
-        $this->parent = $inst;
+    public function __construct() {
 
         $this->volatile["notificationBatch"] = $this->volatile['notification'];
         $this->volatile["notificationBatch"]['targets'] = array("array", true);
