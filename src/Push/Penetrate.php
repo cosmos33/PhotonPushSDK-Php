@@ -42,12 +42,12 @@ class PenetrateBatch extends \Photon\Push\Core\PenetrateCore {
                 );
             }
         }
-        $this->lib->setParams("targets", $targetres);
+        $this->lib->setParams("targets", json_encode($targetres));
         return $this;
     }
 
     public function push($timeout = 1) {
-        return $this->lib->httpPost("penetrate", $timeout);
+        return $this->lib->httpPost("penetrateBatch", $timeout);
     }
 
 }
