@@ -10,6 +10,10 @@ namespace Photon\Push;
 
 class Penetrate extends \Photon\Push\Core\PenetrateCore {
 
+    public function __construct() {
+        parent::__construct($this);
+    }
+
     public function setTarget($target) {
         $this->lib->setParams("target", strval($target));
         return $this;
@@ -23,6 +27,10 @@ class Penetrate extends \Photon\Push\Core\PenetrateCore {
 
 
 class PenetrateBatch extends \Photon\Push\Core\PenetrateCore {
+
+    public function __construct() {
+        parent::__construct($this);
+    }
 
     public function setTargets($targets) {
         $targetres = null;
