@@ -49,7 +49,7 @@ class NotificationBatch extends \Photon\Push\Core\NotificationCore {
                 );
             }
         }
-        $this->lib->setParams("targets", $targetres);
+        $this->lib->setParams("targets", json_encode($targetres));
         return $this;
     }
 

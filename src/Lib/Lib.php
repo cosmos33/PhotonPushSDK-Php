@@ -17,7 +17,7 @@ class Lib {
     private $_params = array();
 
     private $_temps = array();
-    
+
     private $volatile = array(
 
         "notification" => array(
@@ -68,11 +68,11 @@ class Lib {
     public function __construct() {
 
         $this->volatile["notificationBatch"] = $this->volatile['notification'];
-        $this->volatile["notificationBatch"]['targets'] = array("array", true);
+        $this->volatile["notificationBatch"]['targets'] = array("string", true);
         unset($this->volatile["notificationBatch"]['target']);
 
         $this->volatile["penetrateBatch"] = $this->volatile['penetrate'];
-        $this->volatile["penetrateBatch"]['targets'] = array("array", true);
+        $this->volatile["penetrateBatch"]['targets'] = array("string", true);
         unset($this->volatile["penetrateBatch"]['target']);
 
     }

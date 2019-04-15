@@ -24,6 +24,12 @@ class NotificationCore extends PushCore {
         return $this->subInstance;
     }
 
+
+    public function setTitle($content) {
+        $this->subInstance->lib->setParams("title", strval($content));
+        return $this->subInstance;
+    }
+
     /**
      * @access public
      * @param string $actionType        OPEN_APP/OPEN_URL/CUSTOMIZE
