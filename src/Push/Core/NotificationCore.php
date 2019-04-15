@@ -6,70 +6,28 @@
  * Time: 下午9:42
  */
 
-namespace Photon;
+namespace Photon\Push\Core;
 
-/**
- * Class iPushNotification
- */
-class PushNotification {
 
-    /**
-     * @var PushNotificationSuper
-     */
-    public $useSuper = null;
-
-    public $lib = null;
+class NotificationCore extends PushCore {
 
     const ACTION_TYPE_OPEN_APP = "OPEN_APP";
     const ACTION_TYPE_OPEN_URL = "OPEN_URL";
     const ACTION_TYPE_CUSTOMIZE = "CUSTOMIZE";
 
-    public function __construct() {
-        $this->useSuper = new PushNotificationSuper($this);
-        $this->lib = new Lib($this);
-    }
-
-    public function setAppid($appid) {
-        $this->lib->setParams("appId", strval($appid));
-        return $this;
-    }
-
-    public function setAppKey($appid) {
-        $this->lib->setParams("appKey", strval($appid), true);
-        return $this;
-    }
-
-    public function setPackageName($packageName) {
-        $this->lib->setParams("packageName", strval($packageName));
-        return $this;
-    }
-
-    public function setTarget($target) {
-        $this->lib->setParams("target", strval($target));
-        return $this;
-    }
-
-    /**
-     * @param string $type                 别名:1 token:2
-     */
-    public function setPushType($type) {
-        $this->lib->setParams("pushType", strval($type));
-        return $this;
-    }
-
-    public function setTitle($title) {
-        $this->lib->setParams("title", strval($title));
-        return $this;
+    public function __construct($subInstance) {
+        parent::__construct(new NotificationSuper($subInstance), $subInstance);
     }
 
     public function setContent($content) {
-        $this->lib->setParams("content", strval($content));
-        return $this;
+        $this->subInstance->lib->setParams("content", strval($content));
+        return $this->subInstance;
     }
 
-    public function setSource($source) {
-        $this->lib->setParams("source", strval($source));
-        return $this;
+
+    public function setTitle($content) {
+        $this->subInstance->lib->setParams("title", strval($content));
+        return $this->subInstance;
     }
 
     /**
@@ -79,20 +37,16 @@ class PushNotification {
      * @param string $actionParams      actionType:CUSTOMIZE时有效
      */
     public function setActions($actionType = "OPEN_APP", $action = "", $actionParams = "") {
-        $this->lib->setParams("actionType", strval($actionType))
+        $this->subInstance->lib->setParams("actionType", strval($actionType))
             ->setParams("action", strval($action))
             ->setParams("actionParams", strval($actionParams));
-        return $this;
-    }
-
-    public function push($timeout = 1) {
-        return $this->lib->httpPost("notification", $timeout);
+        return $this->subInstance;
     }
 
 }
 
 
-class PushNotificationSuper {
+class NotificationSuper {
 
     /**
      * @var PushNotification
@@ -153,7 +107,7 @@ class PushNotificationSuper {
      * @param int $switch               仅后台运行时才展示消息，自通道+小米支持
      */
     public function setShowOnlyBackstage($switch) {
-        $this->iPushNotification->lib->setParams("source", strval($switch));
+        $this->iPushNotification->lib->setParams("showOnlyBackstage", intval($switch));
         return $this;
     }
 

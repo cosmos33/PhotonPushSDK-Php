@@ -25,8 +25,10 @@ class Push {
 
 
     public function __construct() {
-        $this->notification = new PushNotification();
-        $this->penetrate = new PushPenetrate();
+        $this->notification = new \Photon\Push\Notification();
+        $this->notificationBatch = new \Photon\Push\NotificationBatch();
+        $this->penetrate = new \Photon\Push\Penetrate();
+        $this->penetrateBatch = new \Photon\Push\PenetrateBatch();
     }
 
 }
