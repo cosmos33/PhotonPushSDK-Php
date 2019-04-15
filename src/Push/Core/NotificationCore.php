@@ -107,7 +107,7 @@ class NotificationSuper {
      * @param int $switch               仅后台运行时才展示消息，自通道+小米支持
      */
     public function setShowOnlyBackstage($switch) {
-        $this->iPushNotification->lib->setParams("source", strval($switch));
+        $this->iPushNotification->lib->setParams("showOnlyBackstage", intval($switch));
         return $this;
     }
 

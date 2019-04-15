@@ -12,6 +12,9 @@ namespace Photon\Push\Core;
 class PushCore {
 
 
+    /**
+     * @var \Photon\Push\Core\NotificationSuper | \Photon\Push\Core\PenetrateSuper
+     */
     public $useSuper = null;
 
     /**
@@ -34,17 +37,17 @@ class PushCore {
 
     public function setAppid($appid) {
         $this->subInstance->lib->setParams("appId", strval($appid));
-        return $this;
+        return $this->subInstance;
     }
 
     public function setAppKey($appid) {
         $this->subInstance->lib->setParams("appKey", strval($appid), true);
-        return $this;
+        return $this->subInstance;
     }
 
     public function setPackageName($packageName) {
         $this->subInstance->lib->setParams("packageName", strval($packageName));
-        return $this;
+        return $this->subInstance;
     }
 
     /**
@@ -52,12 +55,12 @@ class PushCore {
      */
     public function setPushType($type) {
         $this->subInstance->lib->setParams("pushType", strval($type));
-        return $this;
+        return $this->subInstance;
     }
 
     public function setSource($source) {
         $this->subInstance->lib->setParams("source", strval($source));
-        return $this;
+        return $this->subInstance;
     }
 
 }

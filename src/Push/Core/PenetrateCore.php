@@ -15,14 +15,9 @@ class PenetrateCore extends PushCore {
     }
 
     public function setMessage($message) {
-        $this->lib->setParams("message", strval($message));
-        return $this;
+        $this->subInstance->lib->setParams("message", strval($message));
+        return $this->subInstance;
     }
-
-    public function push($timeout = 1) {
-        return $this->lib->httpPost("penetrate", $timeout);
-    }
-
 
 }
 
