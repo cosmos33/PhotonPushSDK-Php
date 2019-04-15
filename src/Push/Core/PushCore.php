@@ -11,30 +11,39 @@ namespace Photon\Push\Core;
 
 class PushCore {
 
-    /**
-     * @var PushNotificationSuper
-     */
+
     public $useSuper = null;
 
+    /**
+     * @var \Photon\Push\Notification | \Photon\Push\Penetrate
+     */
+    public $subInstance = null;
+
+    /**
+     * @var \Photon\Lib\Lib
+     */
     public $lib = null;
 
-    public function __construct($instance) {
-        $this->useSuper = $instance;
-        $this->lib = new \Photon\Lib\Lib($this);
+
+    public function __construct($superInstance, $subInstance) {
+        $this->useSuper = $superInstance;
+        $this->subInstance = $subInstance;
+        $this->subInstance->lib = new \Photon\Lib\Lib();
+
     }
 
     public function setAppid($appid) {
-        $this->lib->setParams("appId", strval($appid));
+        $this->subInstance->lib->setParams("appId", strval($appid));
         return $this;
     }
 
     public function setAppKey($appid) {
-        $this->lib->setParams("appKey", strval($appid), true);
+        $this->subInstance->lib->setParams("appKey", strval($appid), true);
         return $this;
     }
 
     public function setPackageName($packageName) {
-        $this->lib->setParams("packageName", strval($packageName));
+        $this->subInstance->lib->setParams("packageName", strval($packageName));
         return $this;
     }
 
@@ -42,17 +51,13 @@ class PushCore {
      * @param string $type                 别名:1 token:2
      */
     public function setPushType($type) {
-        $this->lib->setParams("pushType", strval($type));
+        $this->subInstance->lib->setParams("pushType", strval($type));
         return $this;
     }
 
     public function setSource($source) {
-        $this->lib->setParams("source", strval($source));
+        $this->subInstance->lib->setParams("source", strval($source));
         return $this;
-    }
-
-    public function push($timeout = 1) {
-        return $this->lib->httpPost("notification", $timeout);
     }
 
 }

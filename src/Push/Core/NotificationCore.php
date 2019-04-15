@@ -9,19 +9,19 @@
 namespace Photon\Push\Core;
 
 
-class NotificationCore extends PushCore{
+class NotificationCore extends PushCore {
 
     const ACTION_TYPE_OPEN_APP = "OPEN_APP";
     const ACTION_TYPE_OPEN_URL = "OPEN_URL";
     const ACTION_TYPE_CUSTOMIZE = "CUSTOMIZE";
 
-    public function __construct() {
-        parent::__construct(new NotificationSuper($this));
+    public function __construct($subInstance) {
+        parent::__construct(new NotificationSuper($subInstance), $subInstance);
     }
 
     public function setContent($content) {
-        $this->lib->setParams("content", strval($content));
-        return $this;
+        $this->subInstance->lib->setParams("content", strval($content));
+        return $this->subInstance;
     }
 
     /**
@@ -31,14 +31,10 @@ class NotificationCore extends PushCore{
      * @param string $actionParams      actionType:CUSTOMIZE时有效
      */
     public function setActions($actionType = "OPEN_APP", $action = "", $actionParams = "") {
-        $this->lib->setParams("actionType", strval($actionType))
+        $this->subInstance->lib->setParams("actionType", strval($actionType))
             ->setParams("action", strval($action))
             ->setParams("actionParams", strval($actionParams));
-        return $this;
-    }
-
-    public function push($timeout = 1) {
-        return $this->lib->httpPost("notification", $timeout);
+        return $this->subInstance;
     }
 
 }

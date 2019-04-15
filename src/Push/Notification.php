@@ -13,6 +13,10 @@ namespace Photon\Push;
  */
 class Notification extends \Photon\Push\Core\NotificationCore {
 
+    public function __construct() {
+        parent::__construct($this);
+    }
+
     public function setTarget($target) {
         $this->lib->setParams("target", strval($target));
         return $this;
@@ -31,6 +35,10 @@ class Notification extends \Photon\Push\Core\NotificationCore {
  */
 class NotificationBatch extends \Photon\Push\Core\NotificationCore {
 
+    public function __construct() {
+        parent::__construct($this);
+    }
+
     public function setTargets($targets) {
         $targetres = null;
         if (is_array($targets)) {
@@ -46,7 +54,7 @@ class NotificationBatch extends \Photon\Push\Core\NotificationCore {
     }
 
     public function push($timeout = 1) {
-        return $this->lib->httpPost("notification", $timeout);
+        return $this->lib->httpPost("notificationBatch", $timeout);
     }
 
 }
