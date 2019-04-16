@@ -85,9 +85,10 @@ class Lib {
 
         "regAliasTag" => array(
             "appId" => array("string", true),
-            "packageName" => array("string", true),
-            "title" => array("string", true),
-            "content" => array("string", true),
+            "appKey" => array("string", true),
+            "tag" => array("string", true),
+            "target" => array("string", true),
+
         ),
 
     );
