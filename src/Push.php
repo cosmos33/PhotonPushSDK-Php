@@ -16,19 +16,35 @@ class Push {
     /**
      * @var PushNotification null
      */
-    public $notification = null;
+    public  $notification = null;
+
+    public  $notificationBatch = null;
+
 
     /**
      * @var PushPenetrate null
      */
-    public $penetrate = null;
+    public  $penetrate = null;
+
+    public  $penetrateBatch = null;
 
 
-    public function __construct() {
+    private static $factory = null;
+
+
+    private function __construct() {
         $this->notification = new \Photon\Push\Notification();
         $this->notificationBatch = new \Photon\Push\NotificationBatch();
         $this->penetrate = new \Photon\Push\Penetrate();
         $this->penetrateBatch = new \Photon\Push\PenetrateBatch();
+    }
+
+
+    public static function getFactory() {
+        if (self::$factory == null) {
+            self::$factory =  new \Photon\Push();
+        }
+        return  self::$factory;
     }
 
 }
