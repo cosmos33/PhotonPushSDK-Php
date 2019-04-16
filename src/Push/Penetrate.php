@@ -10,8 +10,18 @@ namespace Photon\Push;
 
 class Penetrate extends \Photon\Push\Core\PenetrateCore {
 
-    public function __construct() {
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\Penetrate();
+        }
+
+        return self::$singleton;
     }
 
     public function setTarget($target) {

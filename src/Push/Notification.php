@@ -13,7 +13,6 @@ namespace Photon\Push;
  */
 class Notification extends \Photon\Push\Core\NotificationCore {
 
-
     private static $singleton = null;
 
     protected function __construct() {
@@ -46,8 +45,18 @@ class Notification extends \Photon\Push\Core\NotificationCore {
  */
 class NotificationBatch extends \Photon\Push\Core\NotificationCore {
 
-    public function __construct() {
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\NotificationBatch();
+        }
+
+        return self::$singleton;
     }
 
     public function setTargets($targets) {
