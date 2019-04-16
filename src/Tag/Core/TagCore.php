@@ -22,7 +22,7 @@ class TagCore {
     public $lib = null;
 
 
-    protected function __construct($superInstance, $subInstance) {
+    protected function __construct($subInstance) {
         $this->subInstance = $subInstance;
         $this->subInstance->lib = new \Photon\Lib\Lib();
 
