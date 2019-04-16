@@ -15,6 +15,23 @@ define("PenetrateUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb2
 define("PenetrateBatchUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3BlbmV0cmF0ZS9iYXRjaA=="));
 
 
+
+//alias绑定标签
+define("RegAliasTagUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3RhZy9yZWdBbGlhc1RhZw=="));
+
+//token绑定标签
+define("RegTokenTagUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3RhZy9yZWdUb2tlblRhZw=="));
+
+//alias解绑标签
+define("UnRegAliasTagUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3RhZy91bnJlZ0FsaWFzVGFn"));
+
+//token解绑标签
+define("UnRegTokenTagUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3RhZy91bnJlZ1Rva2VuVGFn"));
+
+//删除标签
+define("DelTagUrl", base64_decode("aHR0cHM6Ly9wYWFzLXB1c2gtYXBpLmltbW9tby5jb20vcHVzaC9vcGVuL3RhZy9kZWxUYWc="));
+
+
 class Lib {
 
     private $_params = array();
@@ -64,7 +81,14 @@ class Lib {
             "vendorPushSwitch" => array("int", false, array(0, 1), 0),
             "offLine" => array("int", false, array(0, 1), 0),
             "offLineTtl" => array("int", false),
-        )
+        ),
+
+        "regAliasTag" => array(
+            "appId" => array("string", true),
+            "packageName" => array("string", true),
+            "title" => array("string", true),
+            "content" => array("string", true),
+        ),
 
     );
 
@@ -78,11 +102,24 @@ class Lib {
         $this->volatile["penetrateBatch"]['targets'] = array("string", true);
         unset($this->volatile["penetrateBatch"]['target']);
 
+
+        $this->volatile["regTokenTag"] = $this->volatile['regAliasTag'];
+        $this->volatile["unRegAliasTag"] = $this->volatile['regAliasTag'];
+        $this->volatile["unRegTokenTag"] = $this->volatile['regAliasTag'];
+        $this->volatile["delTag"] = $this->volatile['regAliasTag'];
+        unset($this->volatile["delTag"]['target']);
+
+    }
+
+    public function paramsClear() {
+        $this->_params = array();
+        $this->_temps = array();
     }
 
     public function httpPost($type,$timeout = 5) {
 
         try {
+
             $this->checkVolatile($type);
 
             $this->encrpty();
@@ -100,24 +137,38 @@ class Lib {
                 case "penetrateBatch":
                     $url = PenetrateBatchUrl;
                     break;
+                case "regAliasTag":
+                    $url = RegAliasTagUrl;
+                    break;
+                case "regTokenTag":
+                    $url = RegTokenTagUrl;
+                    break;
+                case "unregAliasTag":
+                    $url = UnRegAliasTagUrl;
+                    break;
+                case "unregTokenTag":
+                    $url = UnRegTokenTagUrl;
+                    break;
+                case "delTag":
+                    $url = DelTagUrl;
+                    break;
             }
 
             $postArray = $this->_params;
-            $this->_params = array();
-            $this->_temps = array();
-            $con = curl_init($url);
 
-            curl_setopt($con, CURLOPT_HEADER, false);
-            curl_setopt($con, CURLOPT_POSTFIELDS, http_build_query($postArray));
-            curl_setopt($con, CURLOPT_POST,true);
-            curl_setopt($con, CURLOPT_RETURNTRANSFER,true);
-            curl_setopt($con, CURLOPT_TIMEOUT,(int)$timeout);
-            return curl_exec($con);
+            $this->paramsClear();
+
+            return Http::Post($url, $postArray, $timeout);
+
         } catch (\Exception $e) {
+
+            $this->paramsClear();
+
             return json_encode(array(
                 "em" => $e->getMessage(),
                 "ec" => $e->getCode(),
             ));
+
         }
 
     }
