@@ -12,7 +12,7 @@ namespace Photon\Tag\Core;
 class TagCore {
 
     /**
-     * @var \Photon\Push\Notification | \Photon\Push\NotificationBatch | \Photon\Push\Penetrate | \Photon\Push\PenetrateBatch
+     * @var \Photon\Tag\Tag
      */
     public $subInstance = null;
 

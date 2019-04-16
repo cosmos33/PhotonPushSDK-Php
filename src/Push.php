@@ -9,7 +9,7 @@
 namespace Photon;
 
 /**
- * Class iPush
+ * Class Push
  */
 class Push {
 
@@ -29,6 +29,8 @@ class Push {
     public  $penetrateBatch = null;
 
 
+    public  $tag = null;
+
     private static $factory = null;
 
 
@@ -37,6 +39,8 @@ class Push {
         $this->notificationBatch = \Photon\Push\NotificationBatch::getSingleton();
         $this->penetrate = \Photon\Push\Penetrate::getSingleton();
         $this->penetrateBatch = \Photon\Push\PenetrateBatch::getSingleton();
+
+        $this->tag = \Photon\Tag\Tag::getSingleton();
     }
 
 

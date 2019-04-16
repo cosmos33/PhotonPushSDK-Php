@@ -9,7 +9,7 @@
 namespace Photon\Tag;
 
 /**
- * Class Notification
+ * Class Tag
  */
 class Tag extends \Photon\Tag\Core\TagCore {
 
@@ -21,7 +21,7 @@ class Tag extends \Photon\Tag\Core\TagCore {
 
     public static function getSingleton() {
         if (self::$singleton == null) {
-            self::$singleton = new \Photon\Push\Notification();
+            self::$singleton = new \Photon\Tag\Tag();
         }
 
         return self::$singleton;
