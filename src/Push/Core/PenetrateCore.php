@@ -10,7 +10,7 @@ namespace Photon\Push\Core;
 
 class PenetrateCore extends PushCore {
 
-    public function __construct($subInstance) {
+    protected function __construct($subInstance) {
         parent::__construct(new PenetrateSuper($subInstance), $subInstance);
     }
 

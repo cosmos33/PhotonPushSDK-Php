@@ -15,7 +15,7 @@ class NotificationCore extends PushCore {
     const ACTION_TYPE_OPEN_URL = "OPEN_URL";
     const ACTION_TYPE_CUSTOMIZE = "CUSTOMIZE";
 
-    public function __construct($subInstance) {
+    protected function __construct($subInstance) {
         parent::__construct(new NotificationSuper($subInstance), $subInstance);
     }
 

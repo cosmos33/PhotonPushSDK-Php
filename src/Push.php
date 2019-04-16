@@ -33,10 +33,10 @@ class Push {
 
 
     private function __construct() {
-        $this->notification = new \Photon\Push\Notification();
+        $this->notification = \Photon\Push\Notification::getSingleton();
         $this->notificationBatch = new \Photon\Push\NotificationBatch();
         $this->penetrate = new \Photon\Push\Penetrate();
-        $this->penetrateBatch = new \Photon\Push\PenetrateBatch();
+        $this->penetrateBatch = \Photon\Push\PenetrateBatch::getSingleton();
     }
 
 
