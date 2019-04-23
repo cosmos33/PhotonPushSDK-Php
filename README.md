@@ -5,15 +5,17 @@
 ```
 {
   "require": {
-    "Photon/PushSDK": "*"
+    "photonsdk/push": "v1.3"
   },
   "config": {
     "vendor-dir": "vendor"
   },
-  "repositories": [
-    {"type": "vcs", "url": "https://github.com/cosmos33/PhotonPushSDK-Php.git"},
-    {"packagist": false}
-  ]
+  "repositories": {
+    "packagist": {
+      "type" : "composer",
+      "url" : "https://packagist.phpcomposer.com"
+    }
+  }
 }
 ```
 
