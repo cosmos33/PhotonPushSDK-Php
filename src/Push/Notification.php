@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: keda
+ * User: Photon
  * Date: 2019/3/11
  * Time: 下午9:42
  */
@@ -13,8 +13,18 @@ namespace Photon\Push;
  */
 class Notification extends \Photon\Push\Core\NotificationCore {
 
-    public function __construct() {
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\Notification();
+        }
+
+        return self::$singleton;
     }
 
     public function setTarget($target) {
@@ -35,8 +45,18 @@ class Notification extends \Photon\Push\Core\NotificationCore {
  */
 class NotificationBatch extends \Photon\Push\Core\NotificationCore {
 
-    public function __construct() {
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\NotificationBatch();
+        }
+
+        return self::$singleton;
     }
 
     public function setTargets($targets) {

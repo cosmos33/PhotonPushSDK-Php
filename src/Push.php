@@ -9,26 +9,46 @@
 namespace Photon;
 
 /**
- * Class iPush
+ * Class Push
  */
 class Push {
 
     /**
      * @var PushNotification null
      */
-    public $notification = null;
+    public  $notification = null;
+
+    public  $notificationBatch = null;
+
 
     /**
      * @var PushPenetrate null
      */
-    public $penetrate = null;
+    public  $penetrate = null;
+
+    public  $penetrateBatch = null;
 
 
-    public function __construct() {
-        $this->notification = new \Photon\Push\Notification();
-        $this->notificationBatch = new \Photon\Push\NotificationBatch();
-        $this->penetrate = new \Photon\Push\Penetrate();
-        $this->penetrateBatch = new \Photon\Push\PenetrateBatch();
+    public  $tag = null;
+
+    private static $factory = null;
+
+
+    private function __construct() {
+        $this->notification = \Photon\Push\Notification::getSingleton();
+        $this->notificationBatch = \Photon\Push\NotificationBatch::getSingleton();
+        $this->penetrate = \Photon\Push\Penetrate::getSingleton();
+        $this->penetrateBatch = \Photon\Push\PenetrateBatch::getSingleton();
+
+        $this->tag = \Photon\Tag\Tag::getSingleton();
+    }
+
+
+    public static function getFactory() {
+        if (self::$factory == null) {
+            self::$factory =  new \Photon\Push();
+        }
+        return  self::$factory;
     }
 
 }

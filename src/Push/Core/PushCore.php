@@ -28,7 +28,7 @@ class PushCore {
     public $lib = null;
 
 
-    public function __construct($superInstance, $subInstance) {
+    protected function __construct($superInstance, $subInstance) {
         $this->useSuper = $superInstance;
         $this->subInstance = $subInstance;
         $this->subInstance->lib = new \Photon\Lib\Lib();

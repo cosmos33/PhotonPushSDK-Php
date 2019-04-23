@@ -1,5 +1,5 @@
 {
-  "name": "Photon/PushSDK",
+  "name": "photon/push-sdk",
   "description": "photon push open api",
   "license": "MIT",
   "type": "library",

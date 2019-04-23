@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: momo
+ * User: Photon
  * Date: 2019/3/11
  * Time: 下午9:42
  */
@@ -10,8 +10,18 @@ namespace Photon\Push;
 
 class Penetrate extends \Photon\Push\Core\PenetrateCore {
 
-    public function __construct() {
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\Penetrate();
+        }
+
+        return self::$singleton;
     }
 
     public function setTarget($target) {
@@ -28,8 +38,19 @@ class Penetrate extends \Photon\Push\Core\PenetrateCore {
 
 class PenetrateBatch extends \Photon\Push\Core\PenetrateCore {
 
-    public function __construct() {
+
+    private static $singleton = null;
+
+    protected function __construct() {
         parent::__construct($this);
+    }
+
+    public static function getSingleton() {
+        if (self::$singleton == null) {
+            self::$singleton = new \Photon\Push\PenetrateBatch();
+        }
+
+        return self::$singleton;
     }
 
     public function setTargets($targets) {
