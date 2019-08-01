@@ -204,7 +204,7 @@ class NotificationSuper {
      * @param $hwBadgeClass 全路径入口类
      * @return $this
      */
-    public function setHwBadgeAddNum($num, $hwBadgeClass) {
+    public function setHwBadge($num, $hwBadgeClass) {
         $this->iPushNotification->lib->setParams("hwBadgeAddNum", $num);
         $this->iPushNotification->lib->setParams("hwBadgeClass", $hwBadgeClass);
         return $this;
