@@ -183,6 +183,34 @@ class NotificationSuper {
         return $this;
     }
 
+    /**
+     * @param string $channelId             target >= 26，必传通道id
+     */
+    public function setChannelId($channelId) {
+        $this->iPushNotification->lib->setParams("channelId", $channelId);
+        return $this;
+    }
+
+    /**
+     * @param int 0或不设置：默认样式（标题加粗）1:标题不加粗 2:不展示标题，只展示内容
+     */
+    public function setIosTextStyle($style) {
+        $this->iPushNotification->lib->setParams("iosTextStyle", $style);
+        return $this;
+    }
+
+    /**
+     * @param $num 华为角标数字,实际展示数字为原气泡数字 + 该值
+     * @param $hwBadgeClass 全路径入口类
+     * @return $this
+     */
+    public function setHwBadgeAddNum($num, $hwBadgeClass) {
+        $this->iPushNotification->lib->setParams("hwBadgeAddNum", $num);
+        $this->iPushNotification->lib->setParams("hwBadgeClass", $hwBadgeClass);
+        return $this;
+    }
+
+
     public function push($timeout = 1) {
         return $this->iPushNotification->push($timeout);
     }

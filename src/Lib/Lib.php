@@ -69,6 +69,10 @@ class Lib {
             "popNotify" => array("int", false, array(0, 1), 1),
             "autoCancel" => array("int", false, array(0, 1), 1),
             "forceToSelfVendors" => array("string", false),
+            "channelId" => array("string", false),
+            "iosTextStyle" => array("string", false),
+            "hwBadgeAddNum" => array("int", "hwBadgeClass"),
+            "hwBadgeClass" => array("string", false),
         ),
 
         "penetrate" => array(
@@ -185,8 +189,10 @@ class Lib {
                 }
             }
 
-            if ($v[1] && !isset($this->_params[$k])) {
+            if (is_bool($v[1]) && $v[1] && !isset($this->_params[$k])) {
                 throw new \Exception("<" . $k . "> parameter missing", 1002);
+            } else if (is_string($v[1]) && (empty($this->_params[$k]) != empty($this->_params[$v[1]]))) {
+                throw new \Exception("<" . $k . "> with <" . $v[1] . "> parameter missing", 1004);
             }
 
             if (!isset($this->_params[$k]) && isset($v[3])) {
