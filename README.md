@@ -31,7 +31,7 @@ include "vendor/autoload.php";
 //透传消息
 
 
-$iPush = new \Photon\Push();
+$iPush =  \Photon\Push::getFactory();
 
 //一般通知栏消息发送
 echo $iPush->notification
